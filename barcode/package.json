@@ -1,6 +1,6 @@
 {
   "name": "cloudmersive-barcodeapi-client",
-  "version": "v1.0.3",
+  "version": "v1.0.5",
   "description": "Generate and recognize 1D and 2D barcodes.",
   "license": "Apache 2.0",
   "main": "src/index.js",
