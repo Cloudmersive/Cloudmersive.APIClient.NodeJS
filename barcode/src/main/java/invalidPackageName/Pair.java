@@ -13,7 +13,7 @@
 
 package invalidPackageName;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-16T22:18:27.827-07:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-16T22:19:58.697-07:00")
 public class Pair {
     private String name = "";
     private String value = "";
