@@ -18,7 +18,7 @@ import invalidPackageName.Pair;
 import java.util.Map;
 import java.util.List;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-16T22:16:46.845-07:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-03-16T22:18:23.644-07:00")
 public class ApiKeyAuth implements Authentication {
   private final String location;
   private final String paramName;
