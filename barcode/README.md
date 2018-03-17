@@ -17,10 +17,10 @@ Barcodeapi - JavaScript client for barcodeapi
 
 
 
-Then install it via:
+Install it via:
 
 ```shell
-npm install barcodeapi --save
+npm install barcodeapi
 ```
 
 ##### Local development
