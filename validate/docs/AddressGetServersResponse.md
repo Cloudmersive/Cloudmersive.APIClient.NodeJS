@@ -1,9 +1,11 @@
-# Validateapi.AddressGetServersResponse
+
+# AddressGetServersResponse
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**success** | **Boolean** |  | [optional] 
-**servers** | **[String]** |  | [optional] 
+**success** | **Boolean** |  |  [optional]
+**servers** | **List&lt;String&gt;** |  |  [optional]
+
 
 
