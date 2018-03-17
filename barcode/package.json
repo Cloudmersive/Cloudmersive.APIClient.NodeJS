@@ -2,7 +2,7 @@
   "name": "cloudmersive-barcodeapi-client",
   "version": "v1",
   "description": "Generate and recognize 1D and 2D barcodes.",
-  "license": "Unlicense",
+  "license": "Apache 2.0",
   "main": "src/index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha --recursive"
