@@ -1,0 +1,66 @@
+---
+swagger: "2.0"
+info:
+  version: "v1"
+  title: "virusapi"
+host: "api.cloudmersive.com"
+schemes:
+- "https"
+paths:
+  /virus/scan/file:
+    post:
+      tags:
+      - "Scan"
+      operationId: "Scan_File"
+      consumes:
+      - "multipart/form-data"
+      produces:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      parameters:
+      - name: "inputFile"
+        in: "formData"
+        description: "Input file to perform the operation on."
+        required: true
+        type: "file"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/VirusScanResult"
+      x-swagger-router-controller: "Scan"
+securityDefinitions:
+  Apikey:
+    description: "API Key Authentication"
+    type: "apiKey"
+    name: "Apikey"
+    in: "header"
+definitions:
+  VirusScanResult:
+    type: "object"
+    properties:
+      CleanResult:
+        type: "boolean"
+      FoundViruses:
+        type: "array"
+        items:
+          $ref: "#/definitions/VirusFound"
+    example:
+      FoundViruses:
+      - FileName: "FileName"
+        VirusName: "VirusName"
+      - FileName: "FileName"
+        VirusName: "VirusName"
+      CleanResult: true
+  VirusFound:
+    type: "object"
+    properties:
+      FileName:
+        type: "string"
+      VirusName:
+        type: "string"
+    example:
+      FileName: "FileName"
+      VirusName: "VirusName"

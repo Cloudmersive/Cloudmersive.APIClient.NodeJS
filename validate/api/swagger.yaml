@@ -1,0 +1,326 @@
+---
+swagger: "2.0"
+info:
+  version: "v1"
+  title: "validateapi"
+host: "api.cloudmersive.com"
+schemes:
+- "https"
+paths:
+  /validate/domain/check:
+    post:
+      tags:
+      - "Domain"
+      summary: "Validate a domain name"
+      description: "Check whether a domain name is valid or not.  API performs a live\
+        \ validation by contacting DNS services to validate the existence of the domain\
+        \ name."
+      operationId: "Domain_Check"
+      consumes:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      parameters:
+      - in: "body"
+        name: "domain"
+        description: "Domain name to check, for example \"cloudmersive.com\""
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/CheckResponse"
+      x-swagger-router-controller: "Domain"
+  /validate/domain/whois:
+    post:
+      tags:
+      - "Domain"
+      summary: "Get WHOIS information for a domain"
+      description: "Validate whether a domain name exists, and also return the full\
+        \ WHOIS record for that domain name.  WHOIS records include all the registration\
+        \ details of the domain name, such as information about the domain's owners."
+      operationId: "Domain_Post"
+      consumes:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      parameters:
+      - in: "body"
+        name: "domain"
+        description: "Domain name to check, for example \"cloudmersive.com\""
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/WhoisResponse"
+      x-swagger-router-controller: "Domain"
+  /validate/email/address/syntaxOnly:
+    post:
+      tags:
+      - "Email"
+      summary: "Validate email adddress for syntactic correctness only"
+      description: "Validate whether a given email address is syntactically correct\
+        \ via a limited local-only check.  Use the address/full API to do a full validation."
+      operationId: "Email_Post"
+      consumes:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      parameters:
+      - in: "body"
+        name: "value"
+        description: "Email address to validate, e.g. \"support@cloudmersive.com\""
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/AddressVerifySyntaxOnlyResponse"
+      x-swagger-router-controller: "Email"
+  /validate/email/address/servers:
+    post:
+      tags:
+      - "Email"
+      summary: "Partially check whether an email address is valid"
+      description: "Validate an email address by identifying whether its parent domain\
+        \ has email servers defined.  This call is less limited than syntaxOnly but\
+        \ not as comprehensive as address/full."
+      operationId: "Email_AddressGetServers"
+      consumes:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      parameters:
+      - in: "body"
+        name: "email"
+        description: "Email address to validate, e.g. \"support@cloudmersive.com\""
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/AddressGetServersResponse"
+      x-swagger-router-controller: "Email"
+  /validate/email/address/full:
+    post:
+      tags:
+      - "Email"
+      summary: "Fully validate an email address"
+      description: "Performs a full validation of the email address.  Checks for syntactic\
+        \ correctness, identifies the mail server in question if any, and then contacts\
+        \ the email server to validate the existence of the account - without sending\
+        \ any emails."
+      operationId: "Email_FullValidation"
+      consumes:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      parameters:
+      - in: "body"
+        name: "email"
+        description: "Email address to validate, e.g. \"support@cloudmersive.com\""
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/FullEmailValidationResponse"
+      x-swagger-router-controller: "Email"
+  /validate/ip/geolocate:
+    post:
+      tags:
+      - "IPAddress"
+      summary: "Geolocate an IP address"
+      description: "Identify an IP address Country, State/Provence, City, Zip/Postal\
+        \ Code, etc.  Useful for security and UX applications."
+      operationId: "IPAddress_Post"
+      consumes:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      - "text/json"
+      - "application/xml"
+      - "text/xml"
+      parameters:
+      - in: "body"
+        name: "value"
+        description: "IP address to geolocate, e.g. \"55.55.55.55\""
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/GeolocateResponse"
+      x-swagger-router-controller: "IPAddress"
+securityDefinitions:
+  Apikey:
+    description: "API Key Authentication"
+    type: "apiKey"
+    name: "Apikey"
+    in: "header"
+definitions:
+  CheckResponse:
+    type: "object"
+    properties:
+      ValidDomain:
+        type: "boolean"
+        description: "True if the domain name was valid, false if it is not"
+    description: "Result of a validation operation"
+    example:
+      ValidDomain: true
+  WhoisResponse:
+    type: "object"
+    properties:
+      ValidDomain:
+        type: "boolean"
+        description: "True if the domain is valid, false if it is not"
+      WhoisServer:
+        type: "string"
+        description: "Server used to lookup WHOIS information (may change based on\
+          \ lookup)."
+      RawTextRecord:
+        type: "string"
+        description: "WHOIS raw text record"
+      CreatedDt:
+        type: "string"
+        format: "date-time"
+        description: "Creation date for the record"
+    description: "Result of a WHOIS operation"
+    example:
+      WhoisServer: "WhoisServer"
+      CreatedDt: "2000-01-23T04:56:07.000+00:00"
+      ValidDomain: true
+      RawTextRecord: "RawTextRecord"
+  AddressVerifySyntaxOnlyResponse:
+    type: "object"
+    properties:
+      ValidAddress:
+        type: "boolean"
+        description: "True if the email address is syntactically valid, false if it\
+          \ is not"
+    description: "Syntactic validity of email address"
+    example:
+      ValidAddress: true
+  AddressGetServersResponse:
+    type: "object"
+    properties:
+      Success:
+        type: "boolean"
+      Servers:
+        type: "array"
+        items:
+          type: "string"
+    description: "Result of a partial email address validation"
+    example:
+      Servers:
+      - "Servers"
+      - "Servers"
+      Success: true
+  FullEmailValidationResponse:
+    type: "object"
+    properties:
+      ValidAddress:
+        type: "boolean"
+        description: "True if the email address is valid, false otherwise"
+      MailServerUsedForValidation:
+        type: "string"
+        description: "Email server connected to for verification"
+    description: "Full email addresss validation result"
+    example:
+      ValidAddress: true
+      MailServerUsedForValidation: "MailServerUsedForValidation"
+  GeolocateResponse:
+    type: "object"
+    properties:
+      CountryCode:
+        type: "string"
+        description: "Two-letter country code of IP address"
+      CountryName:
+        type: "string"
+        description: "Country name of IP address"
+      City:
+        type: "string"
+        description: "City of IP address"
+      RegionCode:
+        type: "string"
+        description: "State/region code of IP address"
+      RegionName:
+        type: "string"
+        description: "State/region of IP address"
+      ZipCode:
+        type: "string"
+        description: "Zip or postal code of IP address"
+      TimezoneStandardName:
+        type: "string"
+        description: "Timezone of IP address"
+      Latitude:
+        type: "number"
+        format: "double"
+        description: "Latitude of IP address"
+      Longitude:
+        type: "number"
+        format: "double"
+        description: "Longitude of IP address"
+    description: "Geolocation result"
+    example:
+      RegionCode: "RegionCode"
+      CountryName: "CountryName"
+      RegionName: "RegionName"
+      ZipCode: "ZipCode"
+      TimezoneStandardName: "TimezoneStandardName"
+      Latitude: 0.80082819046101150206595775671303272247314453125
+      City: "City"
+      CountryCode: "CountryCode"
+      Longitude: 6.02745618307040320615897144307382404804229736328125
